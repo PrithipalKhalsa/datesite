@@ -65,9 +65,9 @@
 <body>
 <h1>Random Text Generator</h1>
 <div class="button-container">
-  <button class="button" id="button1">Generate Activity</button>
-  <button class="button" id="button2">Generate Theme</button>
-  <button class="button" id="button3">Generate Role</button>
+  <button class="button" id="button1">Generate Text 1</button>
+  <button class="button" id="button2">Generate Text 2</button>
+  <button class="button" id="button3">Generate Text 3</button>
 </div>
 <div class="output-container">
   <div class="output" id="output1"></div>
@@ -75,20 +75,48 @@
   <div class="output" id="output3"></div>
 </div>
 <script>
-  async function fetchArrayData(fileName) {
-    const response = await fetch(fileName);
-    const data = await response.json();
-    return data;
+  // Arrays of text
+  const arrays = [
+    [
+      "Text from array 1: Line 1",
+      "Text from array 1: Line 2",
+      "Text from array 1: Line 3"
+    ],
+    [
+      "Text from array 2: Line 1",
+      "Text from array 2: Line 2",
+      "Text from array 2: Line 3"
+    ],
+    [
+      "Text from array 3: Line 1",
+      "Text from array 3: Line 2",
+      "Text from array 3: Line 3"
+    ]
+  ];
+
+  // Function to choose a random item from an array
+  function getRandomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
   }
 
-async function generateText(index) {
-    const arrayData = await fetchArrayData(`array${index + 1}.json`);
-    const randomLines = arrayData.map(getRandomItem);
+  // Generate and display random text for a given array index
+  function generateText(index) {
+    const randomLines = arrays[index].map(getRandomItem);
     document.getElementById(`output${index + 1}`).innerHTML = randomLines.join('<br>');
   }
 
+  // Button event listeners
+  document.getElementById("button1").addEventListener("click", function() {
+    generateText(0);
+  });
 
-  // Rest of your code
+  document.getElementById("button2").addEventListener("click", function() {
+    generateText(1);
+  });
+
+  document.getElementById("button3").addEventListener("click", function() {
+    generateText(2);
+  });
 </script>
 </body>
 </html>
