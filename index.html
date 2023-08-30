@@ -15,37 +15,53 @@
 </head>
 <body>
 <h1>Random Text Generator</h1>
-<div id="randomText"></div>
+<button id="button1">Generate Text 1</button>
+<button id="button2">Generate Text 2</button>
+<button id="button3">Generate Text 3</button>
+<div id="output"></div>
 <script>
   // Arrays of text
-  const array1 = [
-    "Text from array 1: Line 1",
-    "Text from array 1: Line 2",
-    "Text from array 1: Line 3"
+  const arrays = [
+    [
+      "Text from array 1: Line 1",
+      "Text from array 1: Line 2",
+      "Text from array 1: Line 3"
+    ],
+    [
+      "Text from array 2: Line 1",
+      "Text from array 2: Line 2",
+      "Text from array 2: Line 3"
+    ],
+    [
+      "Text from array 3: Line 1",
+      "Text from array 3: Line 2",
+      "Text from array 3: Line 3"
+    ]
   ];
-  
-  const array2 = [
-    "Text from array 2: Line 1",
-    "Text from array 2: Line 2",
-    "Text from array 2: Line 3"
-  ];
-  
-  const array3 = [
-    "Text from array 3: Line 1",
-    "Text from array 3: Line 2",
-    "Text from array 3: Line 3"
-  ];
-  
+
   // Function to choose a random item from an array
   function getRandomItem(array) {
     return array[Math.floor(Math.random() * array.length)];
   }
-  
-  // Select a random line from each array
-  const randomText = `${getRandomItem(array1)}<br>${getRandomItem(array2)}<br>${getRandomItem(array3)}`;
-  
-  // Display the random text on the webpage
-  document.getElementById("randomText").innerHTML = randomText;
+
+  // Generate and display random text for a given array index
+  function generateText(index) {
+    const randomLine = getRandomItem(arrays[index]);
+    document.getElementById("output").innerHTML = randomLine;
+  }
+
+  // Button event listeners
+  document.getElementById("button1").addEventListener("click", function() {
+    generateText(0);
+  });
+
+  document.getElementById("button2").addEventListener("click", function() {
+    generateText(1);
+  });
+
+  document.getElementById("button3").addEventListener("click", function() {
+    generateText(2);
+  });
 </script>
 </body>
 </html>
