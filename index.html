@@ -11,57 +11,83 @@
     margin: 0;
     padding: 2rem;
   }
+
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .button:hover {
+    background-color: #2980b9;
+  }
+
+  .output-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .output {
+    margin-top: 2rem;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  @media screen and (max-width: 600px) {
+    .button-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .button {
+      margin: 10px 0;
+    }
+  }
 </style>
 </head>
 <body>
 <h1>Random Text Generator</h1>
-<button id="button1">Generate Text 1</button>
-<button id="button2">Generate Text 2</button>
-<button id="button3">Generate Text 3</button>
-<div id="output"></div>
+<div class="button-container">
+  <button class="button" id="button1">Generate Text 1</button>
+  <button class="button" id="button2">Generate Text 2</button>
+  <button class="button" id="button3">Generate Text 3</button>
+</div>
+<div class="output-container">
+  <div class="output" id="output1"></div>
+  <div class="output" id="output2"></div>
+  <div class="output" id="output3"></div>
+</div>
 <script>
-  // Arrays of text
-  const arrays = [
-    [
-      "Text from array 1: Line 1",
-      "Text from array 1: Line 2",
-      "Text from array 1: Line 3"
-    ],
-    [
-      "Text from array 2: Line 1",
-      "Text from array 2: Line 2",
-      "Text from array 2: Line 3"
-    ],
-    [
-      "Text from array 3: Line 1",
-      "Text from array 3: Line 2",
-      "Text from array 3: Line 3"
-    ]
-  ];
-
-  // Function to choose a random item from an array
-  function getRandomItem(array) {
-    return array[Math.floor(Math.random() * array.length)];
+  async function fetchArrayData(fileName) {
+    const response = await fetch(fileName);
+    const data = await response.json();
+    return data;
   }
 
-  // Generate and display random text for a given array index
-  function generateText(index) {
-    const randomLine = getRandomItem(arrays[index]);
-    document.getElementById("output").innerHTML = randomLine;
+  async function generateText(index) {
+    const arrayData = await fetchArrayData(`array${index + 1}.json`);
+    const randomLines = arrayData.map(getRandomItem);
+    document.getElementById(`output${index + 1}`).innerHTML = randomLines.join('<br>');
   }
 
-  // Button event listeners
-  document.getElementById("button1").addEventListener("click", function() {
-    generateText(0);
-  });
-
-  document.getElementById("button2").addEventListener("click", function() {
-    generateText(1);
-  });
-
-  document.getElementById("button3").addEventListener("click", function() {
-    generateText(2);
-  });
+  // Rest of your code
 </script>
 </body>
 </html>
