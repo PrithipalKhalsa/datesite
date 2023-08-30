@@ -1,4 +1,9 @@
-const outputElement = document.getElementById('output');
+// script.js
+const outputElements = [
+    document.getElementById('output1'),
+    document.getElementById('output2'),
+    document.getElementById('output3')
+];
 
 // Function to fetch and load JSON data
 async function loadJSON(url) {
@@ -7,20 +12,11 @@ async function loadJSON(url) {
 }
 
 // Event listeners for buttons
-document.getElementById('button1').addEventListener('click', async () => {
-    const textArray = await loadJSON('array1.json');
-    const randomIndex = Math.floor(Math.random() * textArray.length);
-    outputElement.textContent = textArray[randomIndex];
-});
-
-document.getElementById('button2').addEventListener('click', async () => {
-    const textArray = await loadJSON('array2.json');
-    const randomIndex = Math.floor(Math.random() * textArray.length);
-    outputElement.textContent = textArray[randomIndex];
-});
-
-document.getElementById('button3').addEventListener('click', async () => {
-    const textArray = await loadJSON('array3.json');
-    const randomIndex = Math.floor(Math.random() * textArray.length);
-    outputElement.textContent = textArray[randomIndex];
-});
+for (let i = 0; i < outputElements.length; i++) {
+    const button = document.getElementById('button' + (i + 1));
+    button.addEventListener('click', async () => {
+        const textArray = await loadJSON('text' + (i + 1) + '.json');
+        const randomIndex = Math.floor(Math.random() * textArray.length);
+        outputElements[i].textContent = textArray[randomIndex];
+    });
+}
