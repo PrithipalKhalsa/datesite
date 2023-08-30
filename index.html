@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Text Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 2rem;
+  }
+</style>
+</head>
+<body>
+<h1>Random Text Generator</h1>
+<div id="randomText"></div>
+<script>
+  // Arrays of text
+  const array1 = [
+    "Text from array 1: Line 1",
+    "Text from array 1: Line 2",
+    "Text from array 1: Line 3"
+  ];
+  
+  const array2 = [
+    "Text from array 2: Line 1",
+    "Text from array 2: Line 2",
+    "Text from array 2: Line 3"
+  ];
+  
+  const array3 = [
+    "Text from array 3: Line 1",
+    "Text from array 3: Line 2",
+    "Text from array 3: Line 3"
+  ];
+  
+  // Function to choose a random item from an array
+  function getRandomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+  
+  // Select a random line from each array
+  const randomText = `${getRandomItem(array1)}<br>${getRandomItem(array2)}<br>${getRandomItem(array3)}`;
+  
+  // Display the random text on the webpage
+  document.getElementById("randomText").innerHTML = randomText;
+</script>
+</body>
+</html>
