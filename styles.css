@@ -14,14 +14,28 @@ body {
 button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #3498db;
-    color: white;
     border: none;
     border-radius: 5px;
     margin: 5px;
     cursor: pointer;
 }
 
+.button-1 {
+    background-color: #86B8A8;
+    color: #C6DFD7;
+}
+
+/* Button 2 style */
+.button-2 {
+    background-color: #E2B639;
+    color: #E7D29C;
+}
+
+/* Button 3 style */
+.button-3 {
+    background-color: #B8C3D2;
+    color: #D4D9E3;
+}
 p {
     margin: 10px;
     font-size: 18px;
