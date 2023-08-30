@@ -82,7 +82,7 @@
   }
 
   async function generateText(index) {
-    const arrayData = await fetchArrayData(`${index}.json`);
+    const arrayData = await fetchArrayData(`array${index + 1}.json`);
     const randomLines = arrayData.map(getRandomItem);
     document.getElementById(`output${index}`).innerHTML = randomLines.join('<br>');
   }
