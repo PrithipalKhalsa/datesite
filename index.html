@@ -65,9 +65,9 @@
 <body>
 <h1>Random Text Generator</h1>
 <div class="button-container">
-  <button class="button" id="button1">Generate Text 1</button>
-  <button class="button" id="button2">Generate Text 2</button>
-  <button class="button" id="button3">Generate Text 3</button>
+  <button class="button" id="button1">Generate Activity</button>
+  <button class="button" id="button2">Generate Theme</button>
+  <button class="button" id="button3">Generate Role</button>
 </div>
 <div class="output-container">
   <div class="output" id="output1"></div>
@@ -82,9 +82,9 @@
   }
 
   async function generateText(index) {
-    const arrayData = await fetchArrayData(`array${index + 1}.json`);
+    const arrayData = await fetchArrayData(`${index}.json`);
     const randomLines = arrayData.map(getRandomItem);
-    document.getElementById(`output${index + 1}`).innerHTML = randomLines.join('<br>');
+    document.getElementById(`output${index}`).innerHTML = randomLines.join('<br>');
   }
 
   // Rest of your code
